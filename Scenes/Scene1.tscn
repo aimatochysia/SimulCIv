@@ -1,0 +1,88 @@
+[gd_scene load_steps=11 format=3 uid="uid://bjn7v0kethipd"]
+
+[ext_resource type="Script" path="res://Scripts/CameraRigRotater.gd" id="1_dry7l"]
+[ext_resource type="Material" uid="uid://baycje8r18xji" path="res://Materials/ground.tres" id="1_l2321"]
+[ext_resource type="Texture2D" uid="uid://c35xlxv6pfcoh" path="res://icon.svg" id="1_r3x0n"]
+[ext_resource type="ArrayMesh" uid="uid://bd6y34wsulf5u" path="res://Meshes/pillar2.obj" id="2_lhv6a"]
+[ext_resource type="Material" uid="uid://dips481m8ldyp" path="res://Materials/pillar.tres" id="3_bsyea"]
+
+[sub_resource type="Shader" id="Shader_j5ub6"]
+code = "shader_type canvas_item;
+
+uniform int pixelSize = 4;
+
+void fragment()
+{
+	
+	ivec2 size = textureSize(TEXTURE, 0);
+	
+	int xRes = size.x;
+	int yRes = size.y;
+	
+	float xFactor = float(xRes) / float(pixelSize);
+	float yFactor = float(yRes) / float(pixelSize);
+	
+	float grid_uv_x = round(UV.x * xFactor) / xFactor;
+	float grid_uv_y = round(UV.y * yFactor) / yFactor;
+	
+	vec4 text = texture(TEXTURE, vec2(grid_uv_x, grid_uv_y));
+	
+	COLOR = text;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wr8b2"]
+shader = SubResource("Shader_j5ub6")
+shader_parameter/pixelSize = 4
+
+[sub_resource type="Environment" id="Environment_5lwmp"]
+ambient_light_color = Color(0.960784, 0.972549, 0.960784, 1)
+ambient_light_energy = 2.0
+reflected_light_source = 1
+glow_enabled = true
+glow_strength = 0.2
+glow_bloom = 1.0
+glow_blend_mode = 0
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_sdo0p"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rpcng"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_wr8b2")
+position = Vector2(256, 144)
+scale = Vector2(4, 2.25)
+texture = ExtResource("1_r3x0n")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_5lwmp")
+camera_attributes = SubResource("CameraAttributesPractical_sdo0p")
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="plane" type="MeshInstance3D" parent="World"]
+transform = Transform3D(4.9998, 0.0447671, 0, -0.0447671, 4.9998, 0, 0, 0, 5, 0, -0.000237942, 0)
+mesh = SubResource("PlaneMesh_rpcng")
+surface_material_override/0 = ExtResource("1_l2321")
+
+[node name="pillar" type="MeshInstance3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.113168, 0.00803733, 0)
+mesh = ExtResource("2_lhv6a")
+surface_material_override/0 = ExtResource("3_bsyea")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.80701, 6.11457, 2.48614)
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+omni_range = 6.56046
+omni_attenuation = 0.329877
+omni_shadow_mode = 0
+
+[node name="CameraRig" type="Node3D" parent="."]
+script = ExtResource("1_dry7l")
+
+[node name="Camera3D" type="Camera3D" parent="CameraRig"]
+transform = Transform3D(0.707107, -0.353553, 0.612373, 0, 0.866026, 0.5, -0.707107, -0.353553, 0.612373, 20, 20, 20)
+projection = 1
+size = 20.0
