@@ -1,0 +1,14 @@
+[gd_resource type="Environment" format=3 uid="uid://doa107wi6c4qe"]
+
+[resource]
+background_mode = 1
+ambient_light_source = 3
+ambient_light_color = Color(0.607843, 0.756863, 0.92549, 1)
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 0.17
+sdfgi_min_cell_size = 0.4
+sdfgi_cascade0_distance = 25.6
+sdfgi_max_distance = 409.6
+volumetric_fog_density = 0.1026
+volumetric_fog_emission = Color(0.941176, 0.470588, 0.337255, 1)
+adjustment_saturation = 0.01
