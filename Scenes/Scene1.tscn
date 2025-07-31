@@ -31,7 +31,7 @@ surface_material_override/0 = ExtResource("3_bsyea")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.80701, 6.49566, 2.48614)
 light_indirect_energy = 0.0
 light_volumetric_fog_energy = 0.0
-omni_range = 16.7715
+omni_range = 5.31543
 omni_attenuation = 0.329877
 omni_shadow_mode = 0
 
