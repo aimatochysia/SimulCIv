@@ -1,19 +1,19 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://baycje8r18xji"]
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://gogmdpufpccs"]
 
-[ext_resource type="Shader" path="res://Shaders/flexible_toon.gdshader" id="1_j4f3c"]
+[ext_resource type="Shader" uid="uid://j4888sf7k7n3" path="res://Shaders/flexible_toon.gdshader" id="1_j4f3c"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_j4f3c")
-shader_parameter/albedo = Color(0.466667, 0.615686, 0.392157, 1)
+shader_parameter/albedo = Color(0.375455, 0.723779, 0.263192, 1)
 shader_parameter/clamp_diffuse_to_max = false
 shader_parameter/cuts = 3
-shader_parameter/wrap = 0.719
-shader_parameter/steepness = 1.0
+shader_parameter/wrap = 0.522
+shader_parameter/steepness = 3.12
 shader_parameter/use_attenuation = true
 shader_parameter/use_specular = true
 shader_parameter/specular_strength = 1.0
-shader_parameter/specular_shininess = 32.0
+shader_parameter/specular_shininess = 16.0
 shader_parameter/use_rim = false
 shader_parameter/rim_width = 8.0
 shader_parameter/rim_color = Color(1, 1, 1, 1)

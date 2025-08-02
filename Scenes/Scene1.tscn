@@ -1,14 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://bjn7v0kethipd"]
+[gd_scene load_steps=12 format=3 uid="uid://bjn7v0kethipd"]
 
 [ext_resource type="Script" uid="uid://brd82vn705c3v" path="res://Scripts/CameraRigRotater.gd" id="1_dry7l"]
 [ext_resource type="Environment" uid="uid://doa107wi6c4qe" path="res://Materials/worldEnvTres.tres" id="1_ixm4b"]
-[ext_resource type="Material" uid="uid://baycje8r18xji" path="res://Materials/ground.tres" id="1_l2321"]
 [ext_resource type="ArrayMesh" uid="uid://bd6y34wsulf5u" path="res://Meshes/pillar2.obj" id="2_lhv6a"]
-[ext_resource type="Material" uid="uid://dips481m8ldyp" path="res://Materials/pillar.tres" id="3_bsyea"]
+[ext_resource type="Material" uid="uid://cwfqwsuslkddd" path="res://Materials/pillar.tres" id="3_bsyea"]
+[ext_resource type="Material" uid="uid://hvw088recgwn" path="res://Materials/rock.tres" id="3_weq3x"]
 [ext_resource type="ArrayMesh" uid="uid://ci0hp54gco6dc" path="res://Meshes/pillar.obj" id="4_d5i7s"]
+[ext_resource type="Material" uid="uid://gogmdpufpccs" path="res://Materials/ground.tres" id="5_ixm4b"]
 [ext_resource type="PackedScene" uid="uid://cuh1yaoty6gvf" path="res://Scenes/camera.tscn" id="6_g5tfe"]
+[ext_resource type="ArrayMesh" uid="uid://dqescasvosltn" path="res://Blendfile/exports/asset_Cube_007.res" id="8_hdne0"]
+[ext_resource type="ArrayMesh" uid="uid://n3q0xqmkcm02" path="res://Blendfile/exports/asset_Cube_011.res" id="9_weq3x"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_rpcng"]
+[sub_resource type="BoxMesh" id="BoxMesh_cqpro"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -17,10 +20,17 @@ environment = ExtResource("1_ixm4b")
 
 [node name="World" type="Node3D" parent="."]
 
-[node name="plane" type="MeshInstance3D" parent="World"]
-transform = Transform3D(99.996, 0.895342, 0, -0.895342, 99.996, 0, 0, 0, 100, 0, -0.000237942, 0)
-mesh = SubResource("PlaneMesh_rpcng")
-surface_material_override/0 = ExtResource("1_l2321")
+[node name="AssetCube007" type="MeshInstance3D" parent="World"]
+transform = Transform3D(-0.985256, 0, 0.171087, 0, 1, 0, -0.171087, 0, -0.985256, 2.40535, 0.439335, 3.47462)
+mesh = ExtResource("8_hdne0")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("3_weq3x")
+
+[node name="AssetCube011" type="MeshInstance3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0684, 0.117955, 5.38468)
+mesh = ExtResource("9_weq3x")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("3_weq3x")
 
 [node name="pillar" type="MeshInstance3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.113168, 0.00803733, 0)
@@ -28,17 +38,32 @@ mesh = ExtResource("2_lhv6a")
 surface_material_override/0 = ExtResource("3_bsyea")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.80701, 6.49566, 2.48614)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.80701, 3.04383, 2.48614)
 light_indirect_energy = 0.0
 light_volumetric_fog_energy = 0.0
-omni_range = 5.31543
+omni_range = 7.0646
 omni_attenuation = 0.329877
 omni_shadow_mode = 0
 
 [node name="Pillar" type="MeshInstance3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.70951, 0, -2.27072)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.21684, 9.53674e-07, 0.673695)
 mesh = ExtResource("4_d5i7s")
 surface_material_override/0 = ExtResource("3_bsyea")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World"]
+transform = Transform3D(30.205, 0, 0, 0, 2.22, 0, 0, 0, 30.205, 0, -1.10926, 0)
+mesh = SubResource("BoxMesh_cqpro")
+surface_material_override/0 = ExtResource("5_ixm4b")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(0.500062, 0.425864, -0.754041, 0.011534, 0.867375, 0.497522, 0.865913, -0.257489, 0.428829, -2.82447, 11.4085, 4.21471)
+shadow_enabled = true
+shadow_reverse_cull_face = true
+shadow_blur = 0.0
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="World"]
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="World"]
 
 [node name="CameraRig" type="Node3D" parent="."]
 script = ExtResource("1_dry7l")
