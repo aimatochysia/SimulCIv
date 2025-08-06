@@ -21,7 +21,7 @@ environment = ExtResource("1_ixm4b")
 [node name="World" type="Node3D" parent="."]
 
 [node name="AssetCube007" type="MeshInstance3D" parent="World"]
-transform = Transform3D(-0.985256, 0, 0.171087, 0, 1, 0, -0.171087, 0, -0.985256, 2.40535, 0.439335, 3.47462)
+transform = Transform3D(0.770713, 0, -0.637182, 0, 1, 0, 0.637182, 0, 0.770713, 2.40535, 0.439335, 3.47462)
 mesh = ExtResource("8_hdne0")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("3_weq3x")
